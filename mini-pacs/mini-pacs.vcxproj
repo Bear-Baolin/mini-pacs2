@@ -69,7 +69,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\opencv-build\install\include\opencv2;D:\opencv-build\opencv2;C:\DCMTK\include\dcmtk;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\opencv-build\install\lib;D:\opencv-build\lib\Debug;C:\DCMTK\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -87,9 +90,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\DCMTK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>E:\dcmtk\dcmtk-3.6.4-win64-support_MD-msvc-15.0\dcmtk-3.6.4-win64-support_MD-msvc-15.0\zlib-1.2.11\lib;E:\dcmtk-msvc15\lib;C:\DCMTK\lib;E:\dcmtk-msvc15\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Iphlpapi.lib;ws2_32.lib;advapi32.lib ;oflog.lib;netapi32.lib;wsock32.lib;ofstd.lib;dcmdata.lib;dcmimgle.lib;dcmimage.lib;ijg8.lib;ijg12.lib;ijg16.lib;dcmjpeg.lib;dcmnet.lib;dcmdsig.lib;dcmsr.lib;dcmtls.lib;dcmpstat.lib;dcmwlm.lib;dcmqrdb.lib;dcmjpls.lib;charls.lib;i2d.lib;zlib_d.lib;opencv_world401d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -123,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dcmtkrdCT.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
